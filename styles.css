@@ -87,19 +87,46 @@ button:hover {
     display: block;
 }
 
-.logo-container {
-    text-align: center;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
     padding: 10px;
+}
+
+.logo-container {
+    text-align: center;
 }
 
 #logo {
     max-width: 150px;
     height: auto;
     display: block;
-    margin: 0 auto;
     border-radius: 8px;
-    
+}
+
+.logout-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    width: auto;
+}
+
+.logout-btn:hover {
+    background-color: #ff5252;
+}
+
+.logout-icon {
+    font-size: 16px;
 }
 
 
@@ -197,13 +224,96 @@ button:hover {
 .apply-filter {
     background-color: #fc9696;
     color: white;
-    padding: 8px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
+        padding: 8px 20px;
 }
+
+/* Login Form Styles */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none !important;
+    border: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password:hover {
+    background: none !important;
+    opacity: 0.7;
+}
+
+.eye-icon {
+    color: #000;
+    background-color: #ff9c9b;
+    border-radius: 50%;
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#loginLoader {
+    display: none;
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #fc9696;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 15px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form-disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+#loginMessage {
+    display: none;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#loginMessage.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+#loginMessage.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
 
 .apply-filter:hover {
     background-color: #ff0000;

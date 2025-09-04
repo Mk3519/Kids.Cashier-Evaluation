@@ -27,6 +27,9 @@ function doGet(e) {
   const action = e.parameter.action;
   
   switch (action) {
+    case 'login':
+      return handleLogin(e.parameter.email, e.parameter.password);
+      
     case 'getPerformance':
       return getPerformanceData(e.parameter.startDate, e.parameter.endDate);
       
@@ -290,6 +293,43 @@ function getEmployees() {
     }));
   
   return employees;
+}
+
+// Function to handle login
+function handleLogin(email, password) {
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const usersSheet = ss.getSheetByName("Users");
+    
+    if (!usersSheet) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: false,
+        message: "Users sheet not found"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    const data = usersSheet.getDataRange().getValues();
+    // Skip header row
+    for (let i = 1; i < data.length; i++) {
+      if (data[i][0] === email && data[i][1] === password) {
+        return ContentService.createTextOutput(JSON.stringify({
+          success: true,
+          message: "Login successful"
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      message: "Invalid credentials"
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      message: "Error: " + error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
 }
 
 // إنشاء قائمة مخصصة في جدول البيانات

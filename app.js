@@ -1,5 +1,57 @@
 // Google Apps Script deployment URL (you'll need to replace this with your actual deployment URL)
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRt3o6GrqKLFJ2wmftVW4cMfUNQA8pEoHsyGWowXchrsn__VKE30h42Vk6PucPiZom_Q/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4fYZfNgIBSrnKXeo7jJESyI0-hoyIJLUPLHDHWMgI_axvZi93DvWQn3mnvpKMc9W22Q/exec';
+
+// Password visibility toggle
+document.getElementById('togglePassword').addEventListener('click', function() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = this.querySelector('.eye-icon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.style.opacity = '0.7';
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.style.opacity = '1';
+    }
+});
+
+// Handle login
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show login loader
+    document.getElementById('loginLoader').style.display = 'block';
+    document.getElementById('loginForm').classList.add('form-disabled');
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch(`${SCRIPT_URL}?action=login&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+        const data = await response.json();
+
+        if (data.success) {
+            sessionStorage.setItem('isLoggedIn', 'true');
+            sessionStorage.setItem('userEmail', email);
+            document.getElementById('mainContainer').style.display = 'block';
+            document.getElementById('loginContainer').style.display = 'none';
+            showLoginMessage('Login successful!', 'success');
+            setTimeout(() => {
+                document.getElementById('mainContainer').style.display = 'block';
+                document.getElementById('loginContainer').style.display = 'none';
+            }, 1000);
+        } else {
+            showLoginMessage('Invalid email or password', 'error');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        showLoginMessage('Error during login. Please try again.', 'error');
+    } finally {
+        // Hide login loader
+        document.getElementById('loginLoader').style.display = 'none';
+        document.getElementById('loginForm').classList.remove('form-disabled');
+    }
+});
 
 // دوال التحكم في عرض وإخفاء دائرة التحميل
 function showLoader() {
@@ -63,6 +115,24 @@ async function populateEmployeeDropdown() {
 }
 
 // تحميل بيانات الموظفين عند تحميل الصفحة
+// Logout functionality
+document.getElementById('logoutButton')?.addEventListener('click', function() {
+    // Clear session storage
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('userEmail');
+    
+    // Show login container and hide main container
+    document.getElementById('loginContainer').style.display = 'block';
+    document.getElementById('mainContainer').style.display = 'none';
+    
+    // Clear form fields
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+    
+    // Show logout message
+    showLoginMessage('Logged out successfully', 'success');
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     populateEmployeeDropdown();
 });
@@ -121,6 +191,18 @@ document.getElementById('cashierEvaluation').addEventListener('submit', async fu
     }
 });
 
+// Function to show login messages
+function showLoginMessage(text, type) {
+    const messageDiv = document.getElementById('loginMessage');
+    messageDiv.textContent = text;
+    messageDiv.className = `message ${type}`;
+    messageDiv.style.display = 'block';
+    setTimeout(() => {
+        messageDiv.style.display = 'none';
+    }, 3000);
+}
+
+// Function to show general messages
 function showMessage(text, type) {
     const messageDiv = document.getElementById('message');
     messageDiv.textContent = text;

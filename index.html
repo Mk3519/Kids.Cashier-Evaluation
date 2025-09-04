@@ -8,9 +8,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div id="loginContainer" class="container">
         <div class="logo-container">
             <img src="images/logo.png" alt="Kids Station Logo" id="logo">
+        </div>
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <div class="password-container">
+                    <input type="password" id="password" required>
+                    <button type="button" id="togglePassword" class="toggle-password">
+                        <span class="eye-icon">👁</span>
+                    </button>
+                </div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div id="loginLoader" class="loader"></div>
+        <div id="loginMessage" class="message"></div>
+    </div>
+
+    <div id="mainContainer" class="container" style="display: none;">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Kids Station Logo" id="logo">
+            </div>
+            <button id="logoutButton" class="logout-btn">
+                <span class="logout-icon"></span> Logout
+            </button>
         </div>
         <h1>Cashier Evaluation</h1>
         <div class="nav-links" style="margin-bottom: 20px; text-align: center;">
@@ -51,6 +81,15 @@
         <div id="message" class="message"></div>
     </div>
     <script src="app.js"></script>
-
+    <script>
+        // Check if user is logged in
+        if (!sessionStorage.getItem('isLoggedIn')) {
+            document.getElementById('mainContainer').style.display = 'none';
+            document.getElementById('loginContainer').style.display = 'block';
+        } else {
+            document.getElementById('mainContainer').style.display = 'block';
+            document.getElementById('loginContainer').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

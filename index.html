@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/logo.png">
+    <title>Kids Station-Cashier</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Kids Station Logo" id="logo">
+        </div>
+        <h1>Cashier Evaluation</h1>
+        <div class="nav-links" style="margin-bottom: 20px; text-align: center;">
+            <a href="performance.html" style="color: #4CAF50; text-decoration: none; padding: 8px 16px; border: 1px solid #4CAF50; border-radius: 4px;">View Performance Rankings</a>
+        </div>
+        <form id="cashierEvaluation">
+            <div class="form-group">
+                <label for="employeeName">Select Employee:</label>
+                <select id="employeeName" required>
+                    <option value="">Choose Employee</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="shortageAmount">Cash Shortage Amount:</label>
+                <input type="number" id="shortageAmount" step="0.01" placeholder="Enter shortage amount">
+            </div>
+
+            <div class="form-group">
+                <label for="surplusAmount">Cash Surplus Amount:</label>
+                <input type="number" id="surplusAmount" step="0.01" placeholder="Enter surplus amount">
+            </div>
+
+            <div class="form-group">
+                <label for="exitSheetMissing">Missing Receipt Count in EXIT Sheet:</label>
+                <input type="number" id="exitSheetMissing" placeholder="Enter missing receipt count">
+            </div>
+
+            <div class="form-group">
+                <label for="cancelAmount">Cancel Amount:</label>
+                <input type="number" id="cancelAmount" step="0.01" placeholder="Enter cancel amount">
+            </div>
+
+            <button type="submit">Save Evaluation</button>
+        </form>
+
+        <div id="loader" class="loader"></div>
+        <div id="message" class="message"></div>
+    </div>
+    <script src="app.js"></script>
+
+</body>
+</html>

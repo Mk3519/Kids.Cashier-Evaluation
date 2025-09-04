@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #d8d6d6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgb(230, 200, 200);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff0000;
+}
+
+button {
+    width: 50%;
+    padding: 12px;
+    background-color: #fc9696;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff0000;
+}
+
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+
+.message.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+    display: block;
+}
+
+.message.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+    display: block;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#logo {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    
+}
+
+
+
+
+
+
+/* تنسيق منطقة الجدول مع شريط التمرير */
+.table-container {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* تنسيق الجدول */
+.performance-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    min-width: 800px; /* لضمان ظهور الشريط الأفقي عند الحاجة */
+}
+
+/* تنسيق رؤوس الأعمدة */
+.performance-table th {
+    background-color: #fc9696;
+    color: white;
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border: 1px solid #ff0000;
+}
+
+/* تنسيق خلايا الجدول */
+.performance-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+
+/* تنسيق الصفوف عند المرور عليها */
+.performance-table tr:hover td {
+    background-color: #fff0f0;
+}
+
+/* تنسيق المراتب الأولى */
+.rank-1 td {
+    background-color: #fff0f0;
+    font-weight: bold;
+}
+
+.rank-2 td {
+    background-color: #fff5f5;
+}
+
+.rank-3 td {
+    background-color: #fff8f8;
+}
+
+/* تنسيق منطقة الفلترة */
+.performance-filters {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* تنسيق حقول التاريخ */
+.date-filter {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.date-filter:focus {
+    border-color: #fc9696;
+    outline: none;
+}
+
+/* تنسيق زر التطبيق */
+.apply-filter {
+    background-color: #fc9696;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.apply-filter:hover {
+    background-color: #ff0000;
+}
+
+/* تنسيق عمود الترتيب */
+.rank-column {
+    width: 60px;
+    font-weight: bold;
+}
+
+/* تنسيق الأرقام في الجدول */
+.number-cell {
+    font-family: 'Arial', monospace;
+    text-align: right;
+}
+
+.loader {
+    display: none;
+    width: 48px;
+    height: 48px;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #ff9b9b;
+    animation: spin 1s linear infinite;
+    
+    /* تحديد موقع دائرة التحميل في منتصف الشاشة */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* إضافة طبقة معتمة خلف دائرة التحميل */
+.loader::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: -1;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.form-disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}

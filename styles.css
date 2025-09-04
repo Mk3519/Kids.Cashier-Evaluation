@@ -262,13 +262,7 @@ button:hover {
 .eye-icon {
     color: #000;
     background-color: #ff9c9b;
-    border-radius: 50%;
-    font-size: 20px;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     
 }
 
